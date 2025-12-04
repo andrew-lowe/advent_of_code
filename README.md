@@ -1,2 +1,3 @@
-# aoc_2025
-working through advent of code 2025
+# advent of code
+
+Working through Advent of Code with the primary goal of getting reps in Rust.
