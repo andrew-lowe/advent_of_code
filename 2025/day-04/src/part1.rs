@@ -4,7 +4,7 @@ fn process_prev_line(line_map: &HashMap<usize, u32>) -> u32 {
     let mut sum = 0;
     for v in line_map.values() {
         if *v < 4u32 {
-            sum += 1
+            sum += 1;
         }
     }
 
@@ -12,16 +12,16 @@ fn process_prev_line(line_map: &HashMap<usize, u32>) -> u32 {
 }
 
 #[tracing::instrument]
-pub fn process(_input: &str) -> miette::Result<String> {
+pub fn process(input: &str) -> miette::Result<String> {
     let mut prev_line_map: HashMap<usize, u32> = HashMap::new();
     let mut sum: u32 = 0;
 
-    for line in _input.lines() {
+    for line in input.lines() {
         let mut cur_line_map: HashMap<usize, u32> = HashMap::new();
 
-        for (j, char) in line.chars().enumerate() {
+        for (j, ch) in line.chars().enumerate() {
 
-            if char == '@' {
+            if ch == '@' {
                 cur_line_map.entry(j).or_insert(0);
 
                 if j > 0 {
@@ -46,7 +46,7 @@ pub fn process(_input: &str) -> miette::Result<String> {
             }
         }
         sum += process_prev_line(&prev_line_map);
-        prev_line_map = cur_line_map.clone();
+        prev_line_map = cur_line_map;
     }
     sum += process_prev_line(&prev_line_map);
     Ok(sum.to_string())
